@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { AiFillYoutube } from "react-icons/ai"
 import { AiFillBell } from "react-icons/ai"
 import { BsDice6Fill } from "react-icons/bs"
+import { Link } from 'react-router-dom'
 
 const Navbar = ({ term, setTerm }) => {
     return (
@@ -10,7 +11,9 @@ const Navbar = ({ term, setTerm }) => {
             < Grids >
                 <Grid1>
                     < AiFillYoutube className='icons' />
-                    <span>YOUTUBE</span>
+                   <Link to="/">
+                    <span style={{outline: "none", color: "white"}}>YOUTUBE</span>
+                   </Link>
                 </Grid1>
                 <Grid2>
                     < input placeholder='Search Youtube'
