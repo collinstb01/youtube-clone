@@ -30,6 +30,9 @@ width: 87%;
 background-color: #282828;
 min-height: 100vh;
 
+@media (max-width: 1300px) {
+    width: 100%;
+}
 `
 
 const Container = styled.div`

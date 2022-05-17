@@ -7,12 +7,13 @@ import DetailsFeedScreen from "./DetailsFeedScreen";
 import DetailsFeedScreenRelated from "./DetailsFeedScreenRelated";
 import Sidebar from "./Sidebar";
 
-const DetailsFeed = () => {
+const DetailsFeed = ({toggle, setToggle}) => {
   const { id } = useParams()
   const {video, loading} = useSelector((state) => state.selectedVideo)
   const {videos} = useSelector((state) => state.relatedVideos)
 const dispatch = useDispatch()
 
+console.log(videos)
   useEffect(() => {
     dispatch(getRelatedVideos(id))
     dispatch(getVideoById(id))
@@ -20,7 +21,7 @@ const dispatch = useDispatch()
   
   return (
     <Container>
-      <Sidebar />
+      <Sidebar toggle={toggle} setToggle={setToggle}  />
       <DetailsFeedScreen video={video} id={id} />
       <DetailsFeedScreenRelated videos={videos} />
     </Container>

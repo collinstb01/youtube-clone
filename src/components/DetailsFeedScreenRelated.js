@@ -24,4 +24,8 @@ background-color: #282828;
 color: white;
 padding-top: 10px;
 z-index: -1;
+
+@media (max-width: 1300px) {
+  width: 30%
+}
 `

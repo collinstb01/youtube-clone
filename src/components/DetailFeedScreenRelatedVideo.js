@@ -6,11 +6,6 @@ import img from "../images/1.png";
 const DetailFeedScreenRelatedVideo = ({ video }) => {
   const navigate = useNavigate();
 
-  const {
-    id : {
-      videoId
-    }
-  } = video
 
   const handlee = () => {
     navigate(`/`);
@@ -20,9 +15,7 @@ const DetailFeedScreenRelatedVideo = ({ video }) => {
   <>
     <Main onClick={handlee}>
       <div className="Img">
-        < Link to={`/details/${videoId}`}>
         <img src={video?.snippet?.thumbnails?.high?.url} />
-        </Link>
       </div>
       <span className="time-stamp">5:00</span>
       <div className="left">

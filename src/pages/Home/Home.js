@@ -3,12 +3,12 @@ import Feeds from '../../components/Feeds'
 import Navbar from '../../components/Navbar'
 
 const Home = () => {
-    const [term, setTerm] = useState('');
+    const [toggle, setToggle] = useState(false);
 
     return (
         <div>
-            < Navbar term={term} setTerm={setTerm} />
-            < Feeds term={term} setTerm={setTerm} />
+            < Navbar toggle={toggle} setToggle={setToggle} />
+            < Feeds toggle={toggle} setToggle={setToggle} />
         </div>
     )
 }

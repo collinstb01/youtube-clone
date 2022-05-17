@@ -53,7 +53,15 @@ const Main = styled.div`
     width: 25%;
     display: flex;
     align-content: center;
-    height: 45vh;
+    height: fit-content;
     flex-direction: row;
+    flex-wrap: wrap;
+
+    @media (max-width: 1300px) {
+        width: 50%;
+    }
+    @media (max-width: 700px) {
+        width: 100%;
+    }
 }
 `

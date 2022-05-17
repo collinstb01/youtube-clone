@@ -3,11 +3,11 @@ import MainFeed from './MainFeed'
 import Sidebar from './Sidebar'
 import styled from 'styled-components'
 
-const Feeds = ({ term, setTerm }) => {
+const Feeds = ({ toggle, setToggle }) => {
     return (
         <Container>
-            <Sidebar />
-            < MainFeed term={term} setTerm={setTerm} />
+            <Sidebar  toggle={toggle} setToggle={setToggle} />
+            < MainFeed />
         </Container>
     )
 }

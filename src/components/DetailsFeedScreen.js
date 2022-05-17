@@ -62,7 +62,9 @@ const Main = styled.div`
   background-color: #282828;
   min-height: 100vh;
   z-index: -1;
-
+  @media (max-width: 1300px) {
+  width: 70%
+}
   .top {
     margin-top: 10px;
     display: flex;

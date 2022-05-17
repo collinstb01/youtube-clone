@@ -45,14 +45,20 @@ export default Video;
 
 const OneVideo = styled.div`
   width: 100%;
-  height: 45vh;
+  min-height: 45vh;
   margin: 10px 10px;
   color: white;
   font-family: Arial;
   .img {
-    width: 100%;
+    max-width: 100%;
     height: 20vh;
     overflow: hidden;
+    @media (max-width: 1300px) {
+      height: 40vh;
+    }
+    @media (max-width: 700px) {
+      height: 40vh;
+    }
     img {
       width: 100%;
     }
@@ -74,13 +80,12 @@ const OneVideo = styled.div`
     justify-content: flex-start;
 
     .channelimg {
-      width: 15%;
-      height: 4vh;
-      overflow: hidden;
-      border-radius: 50%;
       margin: 0px 10px;
       img {
-        width: 100%;
+       width: 35px;
+       height: 35px;
+      border-radius: 50%;
+
       }
     }
     span {

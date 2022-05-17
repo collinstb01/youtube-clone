@@ -2,6 +2,7 @@ import react from "react";
 import Home from "./pages/Home/Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import DetailsScreen from "./pages/DetailsScreen/DetailsScreen";
+import Search from "./pages/Search/Search";
 
 const App = () => {
   return (
@@ -20,6 +21,13 @@ const App = () => {
           element={
             <div>
               <DetailsScreen />
+            </div>
+          } />
+          <Route
+          path="/search/:query"
+          element={
+            <div>
+              <Search />
             </div>
           }
         />

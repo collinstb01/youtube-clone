@@ -1,15 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from "styled-components"
 import { AiFillYoutube } from "react-icons/ai"
 import { AiFillBell } from "react-icons/ai"
 import { BsDice6Fill } from "react-icons/bs"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { getVideosBySearch } from '../redux/actions/videos.action'
+import { useDispatch } from 'react-redux'
 
-const Navbar = ({ term, setTerm }) => {
+const Navbar = ({ toggle, setToggle }) => {
+    const navigate = useNavigate();
+    const [keyword, setKeyword] = useState('Search Youtube')
+    const dispatch = useDispatch()
+    const togglee = () => {
+        setToggle((e) => !e)
+        console.log("clieked")
+    }
+     
+     const handleClick = () => {
+        navigate(`/search/${keyword}`)
+    }
     return (
         <Container>
             < Grids >
                 <Grid1>
+                    <div className="toggle" onClick={togglee}></div>
                     < AiFillYoutube className='icons' />
                    <Link to="/">
                     <span style={{outline: "none", color: "white"}}>YOUTUBE</span>
@@ -17,8 +31,9 @@ const Navbar = ({ term, setTerm }) => {
                 </Grid1>
                 <Grid2>
                     < input placeholder='Search Youtube'
-                        onChange={(e) => setTerm(e.target.value)}
-                        value={term}
+                        onChange={(e) => setKeyword(e.target.value)}
+                        onClick={handleClick}
+                        value={keyword}
                     />
                 </Grid2>
                 <Grid3>
@@ -39,12 +54,41 @@ border-bottom: 1px solid gray;
 position: sticky;
 top: 0;
 .icons {
-    padding: 20px;
-    transform: scale(1.4);
+    transform: scale();
     cursor: pointer;
+    margin: 0px 19px;
 }
 .icons:hover{
     opacity: 0.7;
+}
+.toggle {
+    position: relative;
+    background-color: white;
+    width: 13%;
+    height: 0.5vh;
+    cursor: pointer;
+    display: none;
+    @media (max-width: 1300px) {
+        display: block;
+    }
+}
+.toggle::after {
+    position: absolute;
+    content: " ";
+    background-color: white;
+    width: 100%;
+    height: 0.5vh;
+    top: -250%;
+    left: 0;
+
+}
+.toggle::before {
+    position: absolute;
+    content: " ";
+    background-color: white;
+    width: 100%;
+    height: 0.5vh;
+    top: 250%;
 }
 `
 const Grids = styled.div`
