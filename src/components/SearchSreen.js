@@ -17,7 +17,6 @@ const SearchSreen = () => {
   }, [query, dispatch]);
   return (
     <Main>
-      <ChannelSearch />
       {videos.map((video) => (
       <VideoSearch video={video} key={video.snippet.videoId} />        
       ))}

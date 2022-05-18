@@ -2,13 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import DetailFeedScreenRelatedVideo from './DetailFeedScreenRelatedVideo'
 
-const DetailsFeedScreenRelated = ({videos}) => {
+const DetailsFeedScreenRelated = ({videos, id}) => {
   return (
     <Main>
       <h3>Up Next</h3>
       {
         videos.map((video) => (
-          <DetailFeedScreenRelatedVideo key={video.id.videoId} video={video}/>
+          <DetailFeedScreenRelatedVideo key={video.id.videoId} id={id} video={video}/>
         ))
       }
     </Main>
@@ -27,5 +27,8 @@ z-index: -1;
 
 @media (max-width: 1300px) {
   width: 30%
+}
+@media (max-width: 730px) {
+  display: none;
 }
 `

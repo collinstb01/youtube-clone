@@ -1,13 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import img from "../images/1.png";
 import { FaShare } from "react-icons/fa";
 import { AiFillLike } from "react-icons/ai";
 import { AiFillDislike } from "react-icons/ai";
-const DetailsFeedScreen = ({ video, id }) => {
-  const [comment, setComment] = useState("");
+import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
+import numeral from "numeral";
+import { checkSubscriptionStatus, getChannelDetails } from "../redux/actions/channel.action";
 
-  const handle = () => {};
+const DetailsFeedScreen = ({ video , id }) => {
+  const [comment, setComment] = useState("");
+  const [sub, setSub] = useState(false);
+  const _channelId = video?.channelId
+  const dispatch = useDispatch();
+  const [channelIcon, setChannelIcon] = useState(null)
+
+  useEffect(() => {
+    const get_channel_icon = async () => {
+       const {
+          data: { items },
+       } = await request('/channels', {
+          params: {
+             part: 'snippet',
+             id: _channelId,
+          },
+       })
+       setChannelIcon(items[0].snippet.thumbnails.default)
+    }
+    get_channel_icon()
+ }, [_channelId, id])
+
+  const {channel}  =
+    useSelector((state) => state.channelDetails);
+
+
+  useEffect(() => {
+    dispatch(getChannelDetails(_channelId));
+    dispatch(checkSubscriptionStatus(_channelId));
+  }, [dispatch, _channelId]);
+
+
+  const handlesub = () => {
+    setSub((e) => !e)
+    console.log('s')
+  };
   return (
     <Main>
       <Img>
@@ -21,34 +58,37 @@ const DetailsFeedScreen = ({ video, id }) => {
         ></iframe>
       </Img>
       <div className="content">
-
         <h2>{video?.snippet?.title}</h2>
         <div className="cview">
-          <span>13m views . 2 days ago</span>
+          <span>
+            {" "}
+            {numeral(video?.statistics?.viewCount).format("0.a")} Views •{" "}
+            {moment(video?.statistics?.publishedAt).fromNow()}
+          </span>
           <div className="cview2">
             <div>
               <AiFillLike />
-              <span>73k</span>
+              <span>{numeral(video?.statistics?.likeCount).format("0.a")}</span>
             </div>
             <div>
               <AiFillDislike />
-              <span>30k</span>
+              <span> {numeral(video?.statistics?.dislikeCount).format("0.a")}</span>
             </div>
           </div>
         </div>
 
         <div className="subcribe">
           <Img2>
-            <img src={img} />
+            <img src={channelIcon} />
           </Img2>
           <div>
-            <button>SUBCRIBED</button>
+            <button onClick={handlesub}>{!sub ? "SUBCRIBE" : "unSubcribed"}</button>
             <span>3m Subcribers</span>
           </div>
         </div>
         <div className="comment">
           <input placeholder="Enter a comment" type="text" />
-          <button onClick={handle}>POST</button>
+          <button >POST</button>
         </div>
       </div>
     </Main>
@@ -62,9 +102,16 @@ const Main = styled.div`
   background-color: #282828;
   min-height: 100vh;
   z-index: -1;
+
+  button {
+    cursor: pointer;
+  }
   @media (max-width: 1300px) {
-  width: 70%
-}
+    width: 70%;
+  }
+  @media (max-width: 730px) {
+    width: 1000%;
+  }
   .top {
     margin-top: 10px;
     display: flex;

@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux'
 
 const Navbar = ({ toggle, setToggle }) => {
     const navigate = useNavigate();
-    const [keyword, setKeyword] = useState('Search Youtube')
+    const [keyword, setKeyword] = useState('')
     const dispatch = useDispatch()
     const togglee = () => {
         setToggle((e) => !e)
@@ -17,7 +17,9 @@ const Navbar = ({ toggle, setToggle }) => {
     }
      
      const handleClick = () => {
-        navigate(`/search/${keyword}`)
+         if (keyword) {
+            navigate(`/search/${keyword}`)
+         }
     }
     return (
         <Container>
@@ -102,6 +104,8 @@ align-items: center;
 span {
     font-weight: 500;
     font-size: 21px;
+      @media (max-width: 700px) {
+font-size: 18px    }
 }
 `
 const Grid1 = styled.div`
@@ -117,12 +121,16 @@ align-items: center;
 const Grid2 = styled.div`
 width: 33.3%;
 display: flex;
-
+align-items: center;
 input {
     flex: 1;
     padding: 10px;
     border: none;
     outline: none;
+
+    @media (max-width: 700px) {
+      flex: 0.8;
+    }
 }
 `
 const Grid3 = styled.div`

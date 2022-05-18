@@ -1,10 +1,13 @@
-import react from "react";
+import react, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import img from "../images/1.png";
+import request from "../api"
 
 const Video = ({ video }) => {
   const navigate = useNavigate()
+  const [channelIcon, setChannelIcon] = useState(null)
+
   const {
     id,
     snippet: {
@@ -16,6 +19,23 @@ const Video = ({ video }) => {
     },
     contentDetails,
  } = video
+ 
+
+ useEffect(() => {
+    const get_channel_icon = async () => {
+       const {
+          data: { items },
+       } = await request('/channels', {
+          params: {
+             part: 'snippet',
+             id: channelId,
+          },
+       })
+       setChannelIcon(items[0].snippet.thumbnails.default)
+    }
+    get_channel_icon()
+ }, [channelId])
+
 
  const handle = () => {
    navigate(`/details/${id}`)
@@ -33,7 +53,7 @@ const Video = ({ video }) => {
       </span>
       <div className="channel">
         <div className="channelimg">
-          <img src={img} />
+          <img src={channelIcon?.url} />
         </div>
         <span>{channelTitle}</span>
       </div>
@@ -53,6 +73,7 @@ const OneVideo = styled.div`
     max-width: 100%;
     height: 20vh;
     overflow: hidden;
+    cursor: pointer;
     @media (max-width: 1300px) {
       height: 40vh;
     }

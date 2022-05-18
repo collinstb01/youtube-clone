@@ -32,9 +32,9 @@ const Videos = () => {
                         </div>
 
                     ))
-                    : [...Array(20)].map(() => (
+                    : [...Array(1)].map(() => (
                         <div lg={3} md={4}>
-                            <h1>hello world</h1>
+                            <h1 style={{color: "white"}}>Loading... Please Wait</h1>
                         </div>
                     ))}
             </Main>

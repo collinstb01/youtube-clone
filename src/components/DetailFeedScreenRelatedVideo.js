@@ -8,14 +8,14 @@ const DetailFeedScreenRelatedVideo = ({ video }) => {
 
 
   const handlee = () => {
-    navigate(`/`);
+    navigate(`/details/${id}`);
     console.log("clciked")
   };
   return (
   <>
-    <Main onClick={handlee}>
+    <Main >
       <div className="Img">
-        <img src={video?.snippet?.thumbnails?.high?.url} />
+        <img src={video?.snippet?.thumbnails?.high?.url} onClick={handlee} />
       </div>
       <span className="time-stamp">5:00</span>
       <div className="left">
@@ -47,12 +47,14 @@ const Main = styled.div`
   justify-content: center;
   margin-bottom: 40px;
   position: relative;
+  z-index: 78282;
   .Img {
     width: 50%;
     height: 15vh;
     display: grid;
     place-items: center;
     margin-left: 5px;
+    cursor: pointer;
     img {
       width: 100%;
     }
@@ -63,6 +65,8 @@ const Main = styled.div`
   }
   .text1 {
     font-size: 9px;
+    cursor: pointer;
+
   }
   .left {
     width: 50%;

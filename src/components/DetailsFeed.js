@@ -23,7 +23,7 @@ console.log(videos)
     <Container>
       <Sidebar toggle={toggle} setToggle={setToggle}  />
       <DetailsFeedScreen video={video} id={id} />
-      <DetailsFeedScreenRelated videos={videos} />
+      <DetailsFeedScreenRelated videos={videos} id={id} />
     </Container>
   );
 };

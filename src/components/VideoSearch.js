@@ -3,6 +3,8 @@ import styled from "styled-components";
 import img from "../images/1.png";
 import request from "../api";
 import { useParams } from "react-router-dom";
+import moment from 'moment'
+import numeral from 'numeral'
 const VideoSearch = ({ video }) => {
   const { query } = useParams()
   const [views, setViews] = useState(null);
@@ -41,13 +43,13 @@ const VideoSearch = ({ video }) => {
     const get_channel_icon = async () => {
       const {
         data: { items },
-      } = await request("/channels", {
+      } = await request("/channel", {
         params: {
           part: "snippet",
           id: channelId,
         },
       });
-      setChannelIcon(items[0].snippet.thumbnails.default);
+      setChannelIcon(items[0].snippet.thumbnails.default.url);
     };
     get_channel_icon();
   }, [query, channelId]);
@@ -61,7 +63,8 @@ const VideoSearch = ({ video }) => {
       <div className="right">
         <span>{channelTitle}</span>
         <span>
-          {views} views. {duration} 5 months ago
+        {numeral(views).format('0.a')} Views •
+                  {moment(publishedAt).fromNow()}
         </span>
         <div className="img">
           <img src={channelIcon} />

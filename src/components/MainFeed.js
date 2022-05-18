@@ -1,13 +1,16 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styled from "styled-components"
 import Selection from './Selection'
 import Videos from './Videos'
+import {useDispatch} from "react-redux"
+import { getPopularVideos, getVideosByCategory} from "../redux/actions/videos.action"
 
 const MainFeed = ({ term, setTerm }) => {
+    const dispatch  = useDispatch()
     const select = [
         { title: 'RectJs' }, { title: 'AngularJs' }, { title: 'Ionic' }, { title: 'NodeJs' }, { title: "Redux Query" }
     ]
-
+    
     return (
         <Main>
             <Container>

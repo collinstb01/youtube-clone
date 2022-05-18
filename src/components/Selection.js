@@ -5,7 +5,8 @@ const Selection = ({ selects }) => {
 
     return (
         <Container>
-            <h1>{selects.title}</h1>
+            <h1 
+            >{selects.title}</h1>
         </Container>
     )
 }
