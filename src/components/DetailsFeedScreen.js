@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import numeral from "numeral";
 import { checkSubscriptionStatus, getChannelDetails } from "../redux/actions/channel.action";
+import request from "../api"
 
 const DetailsFeedScreen = ({ video , id }) => {
   const [comment, setComment] = useState("");
@@ -39,12 +40,7 @@ const DetailsFeedScreen = ({ video , id }) => {
     dispatch(getChannelDetails(_channelId));
     dispatch(checkSubscriptionStatus(_channelId));
   }, [dispatch, _channelId]);
-
-
-  const handlesub = () => {
-    setSub((e) => !e)
-    console.log('s')
-  };
+  
   return (
     <Main>
       <Img>
@@ -82,7 +78,7 @@ const DetailsFeedScreen = ({ video , id }) => {
             <img src={channelIcon} />
           </Img2>
           <div>
-            <button onClick={handlesub}>{!sub ? "SUBCRIBE" : "unSubcribed"}</button>
+            <button >{!sub ? "SUBCRIBE" : "unSubcribed"}</button>
             <span>3m Subcribers</span>
           </div>
         </div>

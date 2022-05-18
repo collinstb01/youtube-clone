@@ -7,15 +7,15 @@ const DetailFeedScreenRelatedVideo = ({ video }) => {
   const navigate = useNavigate();
 
 
-  const handlee = () => {
-    navigate(`/details/${id}`);
-    console.log("clciked")
-  };
+  // const handlee = () => {
+  //   navigate(`/details/${id}`);
+  //   console.log("clciked")
+  // };
   return (
   <>
     <Main >
       <div className="Img">
-        <img src={video?.snippet?.thumbnails?.high?.url} onClick={handlee} />
+        <img src={video?.snippet?.thumbnails?.high?.url} />
       </div>
       <span className="time-stamp">5:00</span>
       <div className="left">
